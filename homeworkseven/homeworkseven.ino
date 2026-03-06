@@ -22,10 +22,11 @@ void setup() {
 void loop() {
   /*Barometric Reading from sensor*/
   float pressure= BARO.readPressure();
-
   float altitude = 44330 * (1 - pow(pressure/101.325, 1/5.255));
+  float temp2 = BARO.readTemperature(); //Temp reading from arduino board
+  temp2 = (temp2 * 1.8)+32; //Conversion to fahrenheit (°C × 1.8) + 32
 //end of barometric
-
+int fn = 1; //This is the floor number int change when switching floors.
 //start of dht22
 float h = dht.readHumidity();
 float t = dht.readTemperature();
@@ -36,18 +37,19 @@ if (isnan(h) || isnan(t) || isnan(f)) {
   return;
 }
 //Computes the heat index for Fahrenheit
-float hif = dht.computeHeatIndex(f, h);
+//float hif = dht.computeHeatIndex(f, h);
 //Computes the heat index for celsius
-float hic = dht.computeHeatIndex(t, h, false);
+//float hic = dht.computeHeatIndex(t, h, false);
 
-Serial.print(F("Humidity: "));
-Serial.print(h);
-Serial.print(F("% Temperature:  "));
-Serial.print(t);
-Serial.print(F("C "));
-Serial.print(f);
-Serial.print(F("F Heat index: "))'
-Serial'
-
-
+Serial.print(F("Pressure: "));
+Serial.println(pressure);
+Serial.print(F("Temp1:  "));
+Serial.println(f);
+Serial.print(F("Humidity%: "));
+Serial.println(h);
+Serial.print(F("Temp2:  "));
+Serial.println(temp2);
+Serial.print(F("Floor Number:  "));
+Serial.println(fn);
+delay(5000);
 }
