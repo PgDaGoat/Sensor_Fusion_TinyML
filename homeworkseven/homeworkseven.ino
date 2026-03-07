@@ -26,7 +26,7 @@ void loop() {
   float temp2 = BARO.readTemperature(); //Temp reading from arduino board
   temp2 = (temp2 * 1.8)+32; //Conversion to fahrenheit (°C × 1.8) + 32
 //end of barometric
-int fn = 1; //This is the floor number int change when switching floors.
+int fn =4; //This is the floor number int change when switching floors.
 //start of dht22
 float h = dht.readHumidity();
 float t = dht.readTemperature();
@@ -51,5 +51,5 @@ Serial.print(F("Temp2:  "));
 Serial.println(temp2);
 Serial.print(F("Floor Number:  "));
 Serial.println(fn);
-delay(5000);
+//delay(5000);
 }
